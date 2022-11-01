@@ -1,0 +1,37 @@
+--subrequest_boundary
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+Authorization: Bearer ya29.c.b0AUFJQsGnRzVvJxebCNZlG_bl1uQFMrY3uwhxTXjAxZ2KfCb8Yz9bjpVYIXaWkR0VVdRmKIYFhfmIwF9WPnskbMXlau0lwe6MKSi1bIkpEOp205BGLdzSK7hnnxBgdpnhGps0fa-jw0DFixioxNLK1d4iJMOI1nGwvwv70wJ_XB7-30T8-V2LUGFiNXa3fAMnRE-eZCeZPE0wCHp9JextwUVqoDmqC9w
+
+POST /v1/projects/fsm-messaging-33c38/messages:send
+Content-Type: application/json
+accept: application/json
+
+{
+  "message":{
+     "token":"dnR9F-TiyzKPpwpQN_uk2g:APA91bE2zjkocQzuqYRijImU2AY_5fCJT69QReqhQORHiMwvyVzL_eZLI7r2gGf3SRW0KFQ2-24mkkkCynLiQksVvYYw6kq3vdC1S-B3UmGXHswM9lYLZpuyFnD8hy4tlM805aJF7YKX",
+     "notification":{
+       "title":"FCM Message",
+       "body":"This is an FCM notification message!"
+     }
+  }
+}
+
+
+--subrequest_boundary
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+Authorization: Bearer ya29.c.b0AUFJQsGnRzVvJxebCNZlG_bl1uQFMrY3uwhxTXjAxZ2KfCb8Yz9bjpVYIXaWkR0VVdRmKIYFhfmIwF9WPnskbMXlau0lwe6MKSi1bIkpEOp205BGLdzSK7hnnxBgdpnhGps0fa-jw0DFixioxNLK1d4iJMOI1nGwvwv70wJ_XB7-30T8-V2LUGFiNXa3fAMnRE-eZCeZPE0wCHp9JextwUVqoDmqC9w
+
+POST /v1/projects/fsm-messaging-33c38/messages:send
+Content-Type: application/json
+accept: application/json
+{
+  "message":{
+     "token":"dnR9F-TiyzKPpwpQN_uk2g:APA91bE2zjkocQzuqYRijImU2AY_5fCJT69QReqhQORHiMwvyVzL_eZLI7r2gGf3SRW0KFQ2-24mkkkCynLiQksVvYYw6kq3vdC1S-B3UmGXHswM9lYLZpuyFnD8hy4tlM805aJF7YKX",
+     "notification":{
+       "title":"FCM Message",
+       "body":"This is an FCM notification message!"
+     }
+  }
+}
