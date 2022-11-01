@@ -1,5 +1,6 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
+
 
 class Notification(BaseModel):
-    title:str
-    body:str
+	title: str
+	body: str
