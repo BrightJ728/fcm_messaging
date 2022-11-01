@@ -19,19 +19,17 @@ def sendPush(token_list, msg_title, msg_body):
     # Response is a message ID string.
     return response
 
-def subscribe_topic(token:list,topic:str):
+def subscribe_topic(tokens:list, topic:str):
     # These registration tokens come from the client FCM SDKs.
-    registration_tokens = token    
-    response = messaging.subscribe_to_topic(registration_tokens, topic)
+    response = messaging.subscribe_to_topic(tokens, topic)
     return response 
 
-def unsubscribe_topic(token:list,topic:str):
+def unsubscribe_topic(tokens:list, topic:str):
     # These registration tokens come from the client FCM SDKs.
-    registration_tokens = token
-    response = messaging.unsubscribe_from_topic(registration_tokens, topic)
+    response = messaging.unsubscribe_from_topic(tokens, topic)
     return response 
 
-def  send_messages_single_devices(registration_token:str, msg_title, msg_body):
+def  send_messages_single_devices(registration_token:str, msg_title: str, msg_body: str):
     message = messaging.Message(
         notification={
             'title': msg_title,
@@ -56,32 +54,36 @@ def send_messages_multiple_devices(registration_tokens:list):
 
     print('{0} messages were sent successfully'.format(response.success_count))
 
-def send_batch_of_messages(messages:list,registration_token:list):
+def send_batch_of_messages(token:str):
     # Create a list containing up to 500 messages.
     messages = [
         messaging.Message(
             notification=messaging.Notification('Price drop', '5% off all electronics'),
-            token=registration_token,
+            token=token,
         ),
         # ...
         messaging.Message(
             notification=messaging.Notification('Price drop', '2% off all books'),
-            topic='readers-club',
+            topic='news',
         ),
     ]
+
 
     response = messaging.send_all(messages)
     # See the BatchResponse reference documentation
     # for the contents of response.
     print('{0} messages were sent successfully'.format(response.success_count))
+    
+    return response
 
 
-def send_topic(topic, msg_title, msg_body):
+def send_topic(topic: str, msg_title: str, msg_body: str):
     message = messaging.Message(
-        data={
-            'title': msg_title,
-            'body': msg_body,
-        },
+        notification=messaging.Notification(
+            title=msg_title,
+            body=msg_body
+        ),
+        data=None,
         topic=topic,
     )
 

@@ -21,18 +21,18 @@ app.add_middleware(
 
 
 @app.post("/token/")
-async def send_notification_by_token(token_list:list,msg_title: str, msg_body: str):
+async def send_notification_by_token(token_list:list, msg_title: str, msg_body: str):
     response=fcm.sendPush(token_list, msg_title, msg_body)
     return response
    
 @app.post("/topic/")
-async def subscribe_topic_message(topic:list, token: str):
-    response=fcm.subscribe_topic(token=token, topic=topic)
+async def subscribe_topic_message(topic:str, tokens: list):
+    response=fcm.subscribe_topic(tokens, topic)
     return response
 
 @app.post("/topic/unsubscribe/")
-async def unsubscribe_topic_message(topic:list,token:str):
-    response=fcm.unsubscribe_topic(topic=topic,token=token)
+async def unsubscribe_topic_message(topic:str, tokens:list):
+    response=fcm.unsubscribe_topic(tokens, topic)
     return response
    
 
@@ -41,6 +41,10 @@ async def send_topic_message(topic: str, msg_title: str, msg_body: str):
     response=fcm.send_topic(topic, msg_title, msg_body)
     return response
 
+@app.post("/topic/bulk/")
+async def send_bulk_messages(token: str):
+    response=fcm.send_batch_of_messages(token) 
+    return response
 
 @app.post("/")
 async def root():
