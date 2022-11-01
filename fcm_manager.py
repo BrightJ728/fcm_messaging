@@ -4,38 +4,38 @@ from firebase_admin import credentials, messaging
 cred = credentials.Certificate('service-account.json')
 firebase_admin.initialize_app(cred)
 
-def sendPush(registration_token):
+def sendPush(token_list, msg_title, msg_body):
     # See documentation on defining a message payload.
     message = messaging.MulticastMessage(
         notification=messaging.Notification(
-            title="Hello",
-            body="bright Message"
+            title=msg_title,
+            body=msg_body
         ),
         data=None,
-        tokens=[registration_token],
+        tokens=token_list,
     )
 
     response = messaging.send_multicast(message)
     # Response is a message ID string.
     return response
 
-def subscribe_topic(token:str,topic:str):
+def subscribe_topic(token:list,topic:str):
     # These registration tokens come from the client FCM SDKs.
     registration_tokens = token    
     response = messaging.subscribe_to_topic(registration_tokens, topic)
     return response 
 
-def unsubscribe_topic(token:str,topic:str):
+def unsubscribe_topic(token:list,topic:str):
     # These registration tokens come from the client FCM SDKs.
-    registration_tokens = [token]
+    registration_tokens = token
     response = messaging.unsubscribe_from_topic(registration_tokens, topic)
     return response 
 
-def  send_messages_single_devices( registration_token:str):
+def  send_messages_single_devices(registration_token:str, msg_title, msg_body):
     message = messaging.Message(
-        data={
-            'score': '850',
-            'time': '2:45',
+        notification={
+            'title': msg_title,
+            'body': msg_body,
         },
         token=registration_token,
     )
@@ -76,12 +76,11 @@ def send_batch_of_messages(messages:list,registration_token:list):
     print('{0} messages were sent successfully'.format(response.success_count))
 
 
-def send_topic():
-    topic = 'news'
+def send_topic(topic, msg_title, msg_body):
     message = messaging.Message(
         data={
-            'score': '850',
-            'time': '2:45',
+            'title': msg_title,
+            'body': msg_body,
         },
         topic=topic,
     )

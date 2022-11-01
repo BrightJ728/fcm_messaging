@@ -21,25 +21,27 @@ app.add_middleware(
 
 
 @app.post("/token/")
-async def send_notification(token:str):
-    response=fcm.sendPush(registration_token=token)
+async def send_notification_by_token(token_list:list,msg_title: str, msg_body: str):
+    response=fcm.sendPush(token_list, msg_title, msg_body)
     return response
    
 @app.post("/topic/")
-async def subscribe_topic_message(topic:str):
-    response=fcm.subscribe_topic(topic=topic)
+async def subscribe_topic_message(topic:list, token: str):
+    response=fcm.subscribe_topic(token=token, topic=topic)
     return response
 
 @app.post("/topic/unsubscribe/")
-async def unsubscribe_topic_message(topic:str,token:str):
+async def unsubscribe_topic_message(topic:list,token:str):
     response=fcm.unsubscribe_topic(topic=topic,token=token)
     return response
    
 
 @app.post("/topic/send/")
-async def send_topic_message():
-    response=fcm.send_topic()
+async def send_topic_message(topic: str, msg_title: str, msg_body: str):
+    response=fcm.send_topic(topic, msg_title, msg_body)
     return response
+
+
 @app.post("/")
 async def root():
     url= "https://iid.googleapis.com/iid/v1:batchAdd"
