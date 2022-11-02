@@ -1,3 +1,0 @@
-import fcm_manager as fcm
-token="f9dzJN1aVnTXVdlBcaNd0w:APA91bF6atHrYORYBSkj3HlKq_6XdW5Nji6VP-DNri7V3dCZw0x0G2kQqaoBz_Eu8RfjgAJ_prhrJc4e0DNSH97PhQjmrGRru8Vn4WmNxcl9xo5Zo2N1j2wZNZ70RXjea_mgC7-9O7f8"
-fcm.sendPush(token)
